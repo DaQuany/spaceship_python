@@ -132,7 +132,7 @@ time4SecToggle = False
 #screen
 pygame.init()
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("CodingNow!!")
+pygame.display.set_caption("space!!")
 #########################################################
 ##3. player
 player = pygame.image.load("Player.png")
