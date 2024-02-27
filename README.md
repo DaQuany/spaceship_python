@@ -1,30 +1,30 @@
 # Overview
 
-{Provide a description of the software that you wrote to demonstrate the C++ language.}
+This python software is a simple spaceship game. Pygame is used to develop this game. 
+I used different functions to creat and move the objects of the game.
 
-{Describe your purpose for writing this software.}
+A player's spaceship will try to avoid meteors dropping from the top of the game screen.
+A player will get more points according to the play time without crashing into meteors.
+A player will try to get more points in this game.
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code. Focus should be on sharing what you learned about the language syntax.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://www.youtube.com/watch?v=V56lC6uiYX4)
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
+visual studio code
 
-{Describe the programming language that you used and any libraries.}
+python 3.12.2
+pygame
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-
-- [Web Site Name](http://url.link.goes.here)
-- [Web Site Name](http://url.link.goes.here)
+- [Pygame docs](https://www.pygame.org/docs/)
+- [Real Python](https://realpython.com/pygame-a-primer/#basic-game-design)
 
 # Future Work
 
 {Make a list of things that you need to fix, improve, and add in the future.}
 
-- Item 1
-- Item 2
-- Item 3
+- I want to be able to fix the moving system. For now the spaceship moves according to the buttons pressed in the past even when a player is not pressing it. I would like to move the spaceship only when I am pressing the buttons
+- I want to record the highest scores scored in the game. Using file input and output, I will be able to record and display all the scores.
+- I want to be able to randomize the speed of meteors falling from the top. I can apply it to the speed given to each meteors created.

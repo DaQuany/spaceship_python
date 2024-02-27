@@ -3,6 +3,7 @@ from pygame.rect import *
 import random
 
 #########################################################
+#restart when R button is pressed
 def restart():
     global score, isGameOver
     for i in range(len(star)):
@@ -10,6 +11,7 @@ def restart():
     score = 0
     isGameOver = False
 
+#processing the events according to the inputs(buttons)
 def eventProcess(move):
     global isActive
     for event in pygame.event.get():
@@ -27,7 +29,9 @@ def eventProcess(move):
                 move.y = 1
             if event.key == pygame.K_r:
                 restart()
+
 #########################################################
+#moving the player according to the input
 def movePlayer(player, current, move, isGameOver):
     global SCREEN_WIDTH, SCREEN_HEIGHT
     if not isGameOver:
@@ -52,6 +56,7 @@ def timeUpdate50ms():
         return True
     return False
 
+#making stars in random x values from the top of the game screen
 def makeStar(rec):
     if timeUpdate50ms():
         idex = random.randint(0, len(star)-1)
@@ -59,6 +64,7 @@ def makeStar(rec):
             rec[idex].x = random.randint(0, SCREEN_WIDTH)
             rec[idex].y = 0
 
+#dropping the stars
 def moveStar(star, current, isGameOver):
     global SCREEN_HEIGHT
     for i in range(len(star)):    
@@ -70,6 +76,7 @@ def moveStar(star, current, isGameOver):
             current[i].y = -1
         SCREEN.blit(star[i], current[i])
 #########################################################
+#checking if the player has crashed to a star by checking it's width and height and star's x and y values
 def CheckCollision(player, star):
     global isGameOver, score
     if isGameOver:
@@ -93,6 +100,8 @@ def timeUpdate4sec(isGameOver):
         time4SecToggle = (~time4SecToggle)
     return time4SecToggle
 
+
+#displaying the text messages on the screen
 def setText(isupdate=False):
     global score
     myFont = pygame.font.SysFont("arial", 20, True, False)
@@ -109,7 +118,7 @@ def setText(isupdate=False):
 #########################################################
 
 
-##1. 변수 선언
+##variables
 SCREEN_WIDTH = 400
 SCREEN_HEIGHT = 600
 score = 0
@@ -120,7 +129,7 @@ time500ms = 0
 time4Sec = 0
 time4SecToggle = False
 #########################################################
-##2. 스크린
+#screen
 pygame.init()
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("CodingNow!!")
@@ -132,7 +141,7 @@ rectPlayer = player.get_rect()
 rectPlayer.centerx = (SCREEN_WIDTH / 2)
 rectPlayer.centery = (SCREEN_HEIGHT / 2)
 #########################################################
-##4. 유성
+#meteors
 star = [pygame.image.load("star.png") for i in range(20)]
 rectStar = [None for i in range(len(star))]
 for i in range(len(star)):
@@ -140,23 +149,23 @@ for i in range(len(star)):
     rectStar[i] = star[i].get_rect()
     rectStar[i].y = -1
 #########################################################
-##5. time
+#time
 clock = pygame.time.Clock()
 
 while isActive:
-#1. 화면 검정색으로 지우기
+#showing the blank screen
     SCREEN.fill((0, 0, 0))
-#2. 이번트처리
+#event processing with keyboard inputs
     eventProcess(move)    
-#3. 플레이어
+#moving the player
     movePlayer(player, rectPlayer,move,isGameOver)
-#4. 유성만들기    
+#creating and moving the stars
     makeStar(rectStar)
     moveStar(star, rectStar,isGameOver)
-#5. 충돌
+#collision check
     CheckCollision(rectPlayer, rectStar)
-#6. Text 업데이트
+#according to the events happening, displaying the texts on the screen
     setText(timeUpdate4sec(isGameOver))    
-#7.화면업데이트    
+#updating with time
     pygame.display.flip()
     clock.tick(100) 
